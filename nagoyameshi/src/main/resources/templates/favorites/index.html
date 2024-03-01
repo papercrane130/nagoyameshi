@@ -32,7 +32,7 @@
                              <table class="table">
                                  <thead>
                                      <tr>                            
-                                         <th scope="col">民宿名</th>
+                                         <th scope="col">レストラン名</th>
 <!--                                         <th scope="col">チェックイン日</th>
                                          <th scope="col">チェックアウト日</th>
                                          <th scope="col">宿泊人数</th>
@@ -54,7 +54,7 @@
                              
                             <!-- ページネーション -->
                              <div th:if="${favoritePage.getTotalPages() > 1}" class="d-flex justify-content-center">
-                                 <nav aria-label="予約一覧ページ">
+                                 <nav aria-label="お気に入り一覧ページ">
                                      <ul class="pagination">
                                          <li class="page-item">
                                              <span th:if="${favoritePage.isFirst()}" class="page-link disabled">前</span>

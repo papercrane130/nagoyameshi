@@ -42,6 +42,18 @@ public class StripeService {
         		    .setPrice("price_1Oo4eLCSkT9NDjhuZqyftt8l")
         		    .build()
         		  )
+        		  .setSubscriptionData(
+                      SessionCreateParams.SubscriptionData.builder()
+//                          .putMetadata("Id", reservationRegisterForm.getId().toString())
+                          .putMetadata("userId", reservationRegisterForm.getUserId().toString())
+                          .putMetadata("test", "test")
+//                          .putMetadata("checkinDate", reservationRegisterForm.getCheckinDate())
+//                          .putMetadata("checkoutDate", reservationRegisterForm.getCheckoutDate())
+//                          .putMetadata("fromCheckinDateToCheckoutDate", reservationRegisterForm.getFromCheckinDateToCheckoutDate().toString())
+//                          .putMetadata("numberOfPeople", reservationRegisterForm.getNumberOfPeople().toString())
+                   
+                          .build())
+        		  .setCustomer(reservationRegisterForm.getUserId().toString())
         		  .build();
 //        SessionCreateParams params =
 //            SessionCreateParams.builder()
@@ -92,7 +104,7 @@ public void processSessionCompleted(Event event) {
 
         try {
             session = Session.retrieve(session.getId(), params, null);
-            Map<String, String> paymentIntentObject = session.getPaymentIntentObject().getMetadata();
+            Map<String, String> paymentIntentObject = session.getSubscriptionObject().getMetadata();
             reservationService.create(paymentIntentObject);
         } catch (StripeException e) {
             e.printStackTrace();
